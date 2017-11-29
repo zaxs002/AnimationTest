@@ -50,6 +50,10 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
     private PointF mLineTwoPointStart;
     private float mLineValueX4;
     private ValueAnimator mLineAnimator2;
+    private float mLineClearValueX2;
+    private ValueAnimator mLineClearAnimator1;
+    private float mArcClearValue;
+    private ValueAnimator mArcClearAnimator;
 
     public AnimationView3(Context context) {
         this(context, null, 0);
@@ -85,7 +89,10 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
         mArcValue = 0;
         mLineValueX2 = 0;
         mLineValueX4 = mLineTwoPointStart.x;
+        mLineClearValueX2 = mLineOnePointStart.x;
+        mArcClearValue = 0;
 
+        //第一条线动画
         mLineAnimator = ValueAnimator.ofFloat(mLineOnePointStart.x, mLineOnePointEnd.x);
         mLineAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -93,9 +100,10 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
                 mLineValueX2 = (float) animation.getAnimatedValue();
             }
         });
-        mLineAnimator.setDuration(400);
+        mLineAnimator.setDuration(800);
 
 
+        //圆动画
         mArcAnimator = ValueAnimator.ofFloat(0, 180);
         mArcAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -104,9 +112,10 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
             }
         });
 
-        mArcAnimator.setDuration(400);
+        mArcAnimator.setDuration(800);
 
 
+        //第二条线动画
         mLineAnimator2 = ValueAnimator.ofFloat(mLineTwoPointStart.x, mLineTwoPointEnd.x);
         mLineAnimator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -114,7 +123,29 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
                 mLineValueX4 = (float) animation.getAnimatedValue();
             }
         });
-        mLineAnimator2.setDuration(400);
+        mLineAnimator2.setDuration(800);
+
+
+        //第一条线消除动画
+        mLineClearAnimator1 = ValueAnimator.ofFloat(mLineOnePointStart.x, mLineOnePointEnd.x);
+        mLineClearAnimator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mLineClearValueX2 = (float) animation.getAnimatedValue();
+            }
+        });
+        mLineClearAnimator1.setDuration(800);
+
+        //圆消除动画
+        mArcClearAnimator = ValueAnimator.ofFloat(0, 180);
+        mArcClearAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mArcClearValue = (float) animation.getAnimatedValue();
+            }
+        });
+        mArcClearAnimator.setDuration(800);
+
 
         mLineAnimator.start();
 
@@ -123,14 +154,28 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
             public void run() {
                 mArcAnimator.start();
             }
-        }, 300);
+        }, 700);
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mLineClearAnimator1.start();
+            }
+        }, 1000);
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mArcClearAnimator.start();
+            }
+        }, 1700);
 
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mLineAnimator2.start();
             }
-        }, 600);
+        }, 1400);
 
     }
 
@@ -207,9 +252,14 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
 
 //                        canvas.drawRect(mRectF, mPaint);
 //                        canvas.drawLine(mLineOnePointStart.x, mLineOnePointStart.y, mLineValueX2, mLineOnePointEnd.y, mPaint);
-                        canvas.drawLine(mLineOnePointStart.x, mLineOnePointStart.y, mLineValueX2, mLineOnePointEnd.y, mPaint);
-                        canvas.drawLine(mLineTwoPointStart.x, mLineTwoPointStart.y, mLineValueX4, mLineTwoPointEnd.y, mPaint);
+                        canvas.drawLine(mLineClearValueX2, mLineOnePointStart.y, mLineValueX2, mLineOnePointEnd.y, mPaint);
+                        //第一条消除线
+//                        canvas.drawLine(mLineOnePointStart.x, mLineOnePointStart.y, mLineClearValueX2, mLineOnePointEnd.y, mPaint2);
                         canvas.drawArc(mRectF, 270, mArcValue, false, mPaint);
+                        //消除动画
+                        canvas.drawArc(mRectF, 270, mArcClearValue, false, mPaint2);
+
+                        canvas.drawLine(mLineTwoPointStart.x, mLineTwoPointStart.y, mLineValueX4, mLineTwoPointEnd.y, mPaint);
 
 //                        canvas.drawArc(mRectF, -270, offset, false, mPaint);
 //                        canvas.drawArc(mRectF, -270, offsetTwo, false, mPaint2);
