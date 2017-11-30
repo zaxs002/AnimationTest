@@ -54,6 +54,7 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
     private ValueAnimator mLineClearAnimator1;
     private float mArcClearValue;
     private ValueAnimator mArcClearAnimator;
+    private int mDuration;
 
     public AnimationView3(Context context) {
         this(context, null, 0);
@@ -91,6 +92,8 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
         mLineValueX4 = mLineTwoPointStart.x;
         mLineClearValueX2 = mLineOnePointStart.x;
         mArcClearValue = 0;
+        mDuration = 300;
+
 
         //第一条线动画
         mLineAnimator = ValueAnimator.ofFloat(mLineOnePointStart.x, mLineOnePointEnd.x);
@@ -100,7 +103,7 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
                 mLineValueX2 = (float) animation.getAnimatedValue();
             }
         });
-        mLineAnimator.setDuration(800);
+        mLineAnimator.setDuration(mDuration);
 
 
         //圆动画
@@ -112,7 +115,7 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
             }
         });
 
-        mArcAnimator.setDuration(800);
+        mArcAnimator.setDuration(mDuration);
 
 
         //第二条线动画
@@ -123,7 +126,7 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
                 mLineValueX4 = (float) animation.getAnimatedValue();
             }
         });
-        mLineAnimator2.setDuration(800);
+        mLineAnimator2.setDuration(mDuration);
 
 
         //第一条线消除动画
@@ -134,7 +137,7 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
                 mLineClearValueX2 = (float) animation.getAnimatedValue();
             }
         });
-        mLineClearAnimator1.setDuration(800);
+        mLineClearAnimator1.setDuration(mDuration);
 
         //圆消除动画
         mArcClearAnimator = ValueAnimator.ofFloat(0, 180);
@@ -144,7 +147,7 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
                 mArcClearValue = (float) animation.getAnimatedValue();
             }
         });
-        mArcClearAnimator.setDuration(800);
+        mArcClearAnimator.setDuration(mDuration);
 
 
         mLineAnimator.start();
@@ -154,28 +157,28 @@ public class AnimationView3 extends SurfaceView implements SurfaceHolder.Callbac
             public void run() {
                 mArcAnimator.start();
             }
-        }, 700);
+        }, mDuration - (mDuration / 8));
 
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mLineClearAnimator1.start();
             }
-        }, 1000);
+        }, mDuration + (mDuration / 4));
 
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mArcClearAnimator.start();
             }
-        }, 1700);
+        }, mDuration * 2 + (mDuration / 8));
 
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mLineAnimator2.start();
             }
-        }, 1400);
+        }, mDuration * 2 - (mDuration / 4));
 
     }
 

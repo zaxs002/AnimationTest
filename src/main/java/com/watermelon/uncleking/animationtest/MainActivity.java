@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText mEt1;
     private EditText mEt2;
-    private AnimationView2 mSurface_view;
+    private ArcDuiHaoAnimationView mSurface_view;
     private Paint mPaint;
     private Button mBt;
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.watermelon.uncleking.animationtest.MainActivity">
 
-    <com.watermelon.uncleking.animationtest.AnimationView3
+    <com.watermelon.uncleking.animationtest.AnimationView4
         android:id="@+id/surface_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
@@ -14,6 +14,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:orientation="vertical">
 
         <EditText

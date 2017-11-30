@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.watermelon.uncleking.animationtest.MainActivity">
 
-    <com.watermelon.uncleking.animationtest.AnimationView2
+    <com.watermelon.uncleking.animationtest.ArcDuiHaoAnimationView
         android:id="@+id/surface_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
