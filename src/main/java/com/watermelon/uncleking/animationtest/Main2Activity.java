@@ -12,6 +12,7 @@ import android.widget.EditText;
 public class Main2Activity extends AppCompatActivity {
     private EditText mEt1;
     private EditText mEt2;
+    private AnimationEditText mEt3;
     private AnimationView4 mSurface_view;
     private Paint mPaint;
     private Button mBt;
@@ -23,8 +24,12 @@ public class Main2Activity extends AppCompatActivity {
 
         mEt1 = findViewById(R.id.et1);
         mEt2 = findViewById(R.id.et2);
+        mEt3 = findViewById(R.id.animationEditText);
         mBt = findViewById(R.id.start);
+
+
         mSurface_view = findViewById(R.id.surface_view);
+
 
         mSurface_view.addElement(mEt1);
         mSurface_view.addElement(mEt2);
@@ -32,7 +37,7 @@ public class Main2Activity extends AppCompatActivity {
         mBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSurface_view.start();
+                mEt3.drawDuiHao();
             }
         });
 

@@ -40,6 +40,39 @@
             android:layout_height="wrap_content"
             android:text="动画"/>
 
+        <com.watermelon.uncleking.animationtest.AnimationEditText
+            android:id="@+id/animationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            />
+        <com.watermelon.uncleking.animationtest.AnimationEditText
+            android:id="@+id/animationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            />
+        <com.watermelon.uncleking.animationtest.AnimationEditText
+            android:id="@+id/animationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            />
+        <com.watermelon.uncleking.animationtest.AnimationEditText
+            android:id="@+id/animationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            />
+
         <!--<View-->
         <!--android:id="@+id/line"-->
         <!--android:layout_width="match_parent"-->

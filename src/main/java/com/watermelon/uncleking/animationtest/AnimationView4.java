@@ -659,13 +659,13 @@ public class AnimationView4 extends SurfaceView implements SurfaceHolder.Callbac
                         canvas = mSurfaceHolder.lockCanvas();
                         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
 
-                        float x = (getWidth() - getHeight() / 2) / 2;
-                        float y = getHeight() / 4;
-
-                        RectF oval = new RectF(x, y, getWidth() - x, getHeight() - y);
-
-                        canvas.drawRect(oval, mPaint);
-                        canvas.drawArc(oval, 90, -180, false, mPaint);
+//                        float x = (getWidth() - getHeight() / 2) / 2;
+//                        float y = getHeight() / 4;
+//
+//                        RectF oval = new RectF(x, y, getWidth() - x, getHeight() - y);
+//
+//                        canvas.drawRect(oval, mPaint);
+//                        canvas.drawArc(oval, 90, -180, false, mPaint);
 
 
                         //对号圆
